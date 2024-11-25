@@ -65,7 +65,7 @@ const renderLogo = ({
   );
 };
 
-const QRCode: React.FC<QRCodeProps> = ({
+export const QRCode: React.FC<QRCodeProps> = ({
   value = 'this is a QR code',
   size = 100,
   color = 'black',
@@ -154,5 +154,3 @@ const QRCode: React.FC<QRCodeProps> = ({
     </Svg>
   );
 };
-
-export default QRCode;
