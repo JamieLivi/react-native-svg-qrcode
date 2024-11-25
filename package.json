@@ -1,13 +1,10 @@
 {
-  "name": "@jamielivi/react-native-svg-qrcode",
-  "version": "1.0.2",
+  "name": "react-native-svg-qrcode",
+  "version": "1.0.1",
   "description": "A minimal dependency pure JS QR Code generator for React Native",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/JamieLivi/react-native-svg-qrcode.git"
-  },
-  "publishConfig": {
-    "@jamielivi:registry": "https://npm.pkg.github.com/"
   },
   "source": "./src/index.tsx",
   "main": "./lib/commonjs/index.js",
