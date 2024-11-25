@@ -6,6 +6,9 @@
     "type": "git",
     "url": "git+https://github.com/JamieLivi/react-native-svg-qrcode.git"
   },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org"
+  },
   "source": "./src/index.tsx",
   "main": "./lib/commonjs/index.js",
   "module": "./lib/module/index.js",
