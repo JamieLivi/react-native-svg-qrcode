@@ -50,5 +50,7 @@ jobs:
       - name: Publish
         shell: bash
         run: |
+          git config --global user.email "jamie.livingstone1@outlook.com"
+          git config --global user.name "JamieLivi (via GitHub Actions)"
           npm config set //registry.npmjs.org/:_authToken ${{ secrets.NPM_AUTH_TOKEN }}
           yarn release --ci ${{steps.get-release-type.outputs.RELEASE_TYPE}}
