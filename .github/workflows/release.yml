@@ -1,0 +1,57 @@
+name: Build & Publish
+
+permissions: write-all
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types: [closed]
+    branches:
+      - main
+
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: ${{ (github.event.pull_request.merged == true) && !contains(github.event.pull_request.title, 'skip build') }}
+    env:
+      NODE_AUTH_TOKEN: ${{ github.token }}
+      GITHUB_TOKEN: ${{ github.token }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup
+        uses: ./.github/actions/setup
+
+      - name: Build package
+        run: yarn prepare
+
+      - name: Initialize git config
+        shell: bash
+        run: |
+          git config user.name "jamielivi-cd"
+          git config user.email "ci@jamielivi.com"
+
+      - name: Get release type
+        id: get-release-type
+        run: |
+          if ${{contains(github.event.pull_request.title, 'minor')}}
+          then
+            echo "RELEASE_TYPE=minor" >> $GITHUB_OUTPUT
+          elif ${{contains(github.event.pull_request.title, 'major')}}
+          then
+            echo "RELEASE_TYPE=major" >> $GITHUB_OUTPUT
+          else
+            echo "RELEASE_TYPE=patch" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Publish
+        run: yarn release --ci ${{steps.get-release-type.outputs.RELEASE_TYPE}}
