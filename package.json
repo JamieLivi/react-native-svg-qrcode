@@ -1,7 +1,14 @@
 {
-  "name": "react-native-svg-qrcode",
-  "version": "1.0.0",
+  "name": "@jamielivi/react-native-svg-qrcode",
+  "version": "1.0.1",
   "description": "A minimal dependency pure JS QR Code generator for React Native",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JamieLivi/react-native-svg-qrcode.git"
+  },
+  "publishConfig": {
+    "@jamielivi:registry": "https://npm.pkg.github.com/"
+  },
   "source": "./src/index.tsx",
   "main": "./lib/commonjs/index.js",
   "module": "./lib/module/index.js",
@@ -48,25 +55,18 @@
     "ios",
     "android"
   ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/JamieLivi/react-native-svg-qrcode.git"
-  },
   "author": "Jamie Livingstone <jamie.livingstone1@outlook.com> (https://github.com/JamieLivi)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/JamieLivi/react-native-svg-qrcode/issues"
   },
   "homepage": "https://github.com/JamieLivi/react-native-svg-qrcode#readme",
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
-  },
   "devDependencies": {
     "@commitlint/config-conventional": "^17.0.2",
     "@evilmartians/lefthook": "^1.5.0",
     "@react-native/eslint-config": "^0.76.3",
-    "@release-it/conventional-changelog": "^9.0.3",
-    "@types/jest": "^29.5.14",
+    "@release-it/conventional-changelog": "^9.0.2",
+    "@types/jest": "^29.5.5",
     "@types/react": "^18.2.44",
     "@typescript-eslint/eslint-plugin": "8.15.0",
     "@typescript-eslint/parser": "8.15.0",
