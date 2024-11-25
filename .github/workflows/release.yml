@@ -17,7 +17,7 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-    if: ${{ (github.event.pull_request.merged == true) && !contains(github.event.pull_request.title, 'skip build') }}
+    if: ${{ (github.event.pull_request.merged == true) && !contains(github.event.pull_request.title, 'skip build') }} || (github.event_name == 'push' && github.ref == 'refs/heads/main')
     env:
       NODE_AUTH_TOKEN: ${{ github.token }}
       GITHUB_TOKEN: ${{ github.token }}
