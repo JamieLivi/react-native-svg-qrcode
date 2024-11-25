@@ -1,5 +1,5 @@
 import { StyleSheet, View } from 'react-native';
-import QRCode from 'react-native-svg-qrcode';
+import { QRCode } from 'react-native-svg-qrcode';
 
 const QR_CODE_SIZE = 262;
 const QR_LOGO_SIZE = 70;
