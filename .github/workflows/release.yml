@@ -34,12 +34,6 @@ jobs:
       - name: Build package
         run: yarn prepare
 
-      - name: Initialize git config
-        shell: bash
-        run: |
-          git config user.name "jamielivi-cd"
-          git config user.email "ci@jamielivi.com"
-
       - name: Get release type
         id: get-release-type
         run: |
@@ -54,4 +48,9 @@ jobs:
           fi
 
       - name: Publish
-        run: yarn release --ci ${{steps.get-release-type.outputs.RELEASE_TYPE}}
+        shell: bash
+        run: |
+          git config user.name "JamieLivi"
+          git config user.email "jamie.livingstone1@outlook.com"
+          npm config set //registry.npmjs.org/:_authToken $NPM_TOKEN
+          yarn release --ci ${{steps.get-release-type.outputs.RELEASE_TYPE}}
