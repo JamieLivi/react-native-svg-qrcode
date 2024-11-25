@@ -37,10 +37,10 @@ jobs:
       - name: Get release type
         id: get-release-type
         run: |
-          if ${{contains(github.event.pull_request.title, 'minor')}}
+          if [[ "${{ contains(github.event.pull_request.title, 'minor') }}" == "true" ]]
           then
             echo "RELEASE_TYPE=minor" >> $GITHUB_OUTPUT
-          elif ${{contains(github.event.pull_request.title, 'major')}}
+          elif [[ "${{ contains(github.event.pull_request.title, 'major') }}" == "true" ]]
           then
             echo "RELEASE_TYPE=major" >> $GITHUB_OUTPUT
           else
@@ -50,7 +50,5 @@ jobs:
       - name: Publish
         shell: bash
         run: |
-          git config user.name "JamieLivi"
-          git config user.email "jamie.livingstone1@outlook.com"
-          npm config set //registry.npmjs.org/:_authToken $NPM_TOKEN
+          npm config set //registry.npmjs.org/:_authToken ${{ secrets.NPM_AUTH_TOKEN }}
           yarn release --ci ${{steps.get-release-type.outputs.RELEASE_TYPE}}
