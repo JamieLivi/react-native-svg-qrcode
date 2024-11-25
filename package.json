@@ -117,8 +117,7 @@
       "requireCleanWorkingDir": false
     },
     "npm": {
-      "publish": true,
-      "publishPath": "lib"
+      "publish": true
     },
     "github": {
       "release": true
