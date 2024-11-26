@@ -12,15 +12,18 @@
   "source": "./src/index.tsx",
   "main": "./lib/commonjs/index.js",
   "module": "./lib/module/index.js",
+  "react-native": "./lib/module/index.js",
   "types": "./lib/typescript/commonjs/src/index.d.ts",
   "exports": {
     ".": {
       "import": {
         "types": "./lib/typescript/module/src/index.d.ts",
+        "react-native": "./lib/module/index.js",
         "default": "./lib/module/index.js"
       },
       "require": {
         "types": "./lib/typescript/commonjs/src/index.d.ts",
+        "react-native": "./lib/commonjs/index.js",
         "default": "./lib/commonjs/index.js"
       }
     }
@@ -54,7 +57,9 @@
   "keywords": [
     "react-native",
     "ios",
-    "android"
+    "android",
+    "svg",
+    "qrcode"
   ],
   "author": "Jamie Livingstone <jamie.livingstone1@outlook.com> (https://github.com/JamieLivi)",
   "license": "MIT",
