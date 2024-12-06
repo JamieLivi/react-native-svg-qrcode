@@ -11,7 +11,7 @@ Written in TypeScript.
 ## Installation
 
 ```bash
-yarn add react-native-svg react-native-qrcode-svg
+yarn add react-native-svg react-native-svg-qrcode
 ```
 
 ## Usage
