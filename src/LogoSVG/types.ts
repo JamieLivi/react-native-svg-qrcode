@@ -1,5 +1,5 @@
 export interface LogoSVGProps {
-  svg: string | object;
+  svg: string | number;
   logoSize: number;
   logoColor?: string;
 }

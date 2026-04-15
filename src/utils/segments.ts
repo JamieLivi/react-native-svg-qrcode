@@ -45,7 +45,7 @@ const getSegmentsFromString = (dataStr: string): FormattedSegment[] => {
   const numSegs = getSegments(Regex.NUMERIC, Mode.NUMERIC, dataStr);
   const alphaNumSegs = getSegments(Regex.ALPHANUMERIC, Mode.ALPHANUMERIC, dataStr);
   let byteSegs = [];
-  let kanjiSegs: any[];
+  let kanjiSegs: ReturnType<typeof getSegments>;
 
   if (Utils.isKanjiModeEnabled()) {
     byteSegs = getSegments(Regex.BYTE, Mode.BYTE, dataStr);
