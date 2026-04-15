@@ -1,9 +1,10 @@
-import { useMemo } from 'react';
+import { Suspense, lazy, useMemo } from 'react';
 import Svg, { ClipPath, Defs, G, Image, LinearGradient, Path, Rect, Stop } from 'react-native-svg';
-import LogoSVG from './LogoSVG';
 import { genMatrix } from './genMatrix';
 import { transformMatrixIntoPath } from './transformMatrixIntoPath';
 import type { QRCodeProps, RenderLogoProps } from './types';
+
+const LazyLogoSVG = lazy(() => import('./LogoSVG'));
 
 const renderLogo = ({
   size,
@@ -50,7 +51,9 @@ const renderLogo = ({
           fill={logoBackgroundColor}
         />
         {logoSVG ? (
-          <LogoSVG svg={logoSVG} logoSize={logoSize} logoColor={logoColor} />
+          <Suspense fallback={null}>
+            <LazyLogoSVG svg={logoSVG} logoSize={logoSize} logoColor={logoColor} />
+          </Suspense>
         ) : (
           <Image
             width={logoSize}
