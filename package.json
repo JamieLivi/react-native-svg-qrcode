@@ -129,7 +129,9 @@
       "requireCleanWorkingDir": false
     },
     "npm": {
-      "publish": true
+      "publish": true,
+      "skipChecks": true,
+      "publishArgs": ["--provenance"]
     },
     "github": {
       "release": true
