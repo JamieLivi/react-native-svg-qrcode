@@ -124,8 +124,9 @@
   },
   "release-it": {
     "git": {
-      "commitMessage": "chore: release ${version}",
-      "tagName": "v${version}",
+      "commit": false,
+      "push": false,
+      "tag": false,
       "requireCleanWorkingDir": false
     },
     "npm": {
@@ -134,7 +135,8 @@
       "publishArgs": ["--provenance"]
     },
     "github": {
-      "release": true
+      "release": true,
+      "tagName": "v${version}"
     }
   },
   "react-native-builder-bob": {
