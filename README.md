@@ -14,45 +14,91 @@ Written in TypeScript.
 yarn add react-native-svg react-native-svg-qrcode
 ```
 
+or
+
+```bash
+npm install react-native-svg react-native-svg-qrcode
+```
+
 ## Usage
 
-```jsx
-const QR_CODE_SIZE = 262;
-const QR_LOGO_SIZE = 70;
+```tsx
+import { QRCode } from 'react-native-svg-qrcode';
 
-const App = () => {
-  return (
-    <View style={styles.container}>
-      <QRCode
-        size={QR_CODE_SIZE}
-        value={'insert address'}
-        logo={require('../assets/black_r_logo.png')}
-        logoSize={QR_LOGO_SIZE}
-      />
-    </View>
-  );
-};
+const App = () => (
+  <QRCode
+    size={262}
+    value="https://example.com"
+    logo={require('./assets/logo.png')}
+    logoSize={70}
+  />
+);
+```
+
+### SVG Logo
+
+You can use an SVG string, URL, or local asset as the logo instead of a raster image:
+
+```tsx
+// Inline SVG string
+<QRCode value="https://example.com" logoSVG="<svg>...</svg>" logoSize={50} />
+
+// Remote SVG URL
+<QRCode value="https://example.com" logoSVG="https://example.com/logo.svg" logoSize={50} />
+
+// Local SVG asset (via require)
+<QRCode value="https://example.com" logoSVG={require('./assets/logo.svg')} logoSize={50} />
+```
+
+### Linear Gradient
+
+```tsx
+<QRCode
+  value="https://example.com"
+  size={200}
+  enableLinearGradient
+  linearGradient={['#FF0000', '#0000FF']}
+  gradientDirection={['0%', '0%', '100%', '100%']}
+/>
+```
+
+### Error Handling
+
+```tsx
+<QRCode
+  value="https://example.com"
+  onError={(error) => console.error('QR generation failed:', error)}
+/>
 ```
 
 ## Props
 
-| Name                 | Default                                           | Description                                                                                                               |
-| -------------------- | ------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
-| size                 | 100                                               | Size of rendered image in pixels                                                                                          |
-| value                | 'this is a QR code'                               | Value of the QR code.                                                                                                     |
-| color                | 'black'                                           | Color of the QR code                                                                                                      |
-| backgroundColor      | 'white'                                           | Color of the background                                                                                                   |
-| enableLinearGradient | false                                             | enables or disables linear gradient                                                                                       |
-| linearGradient       | ['rgba(0, 73, 255, 1)', 'rgba(255, 255, 255, 1)'] | array of 2 rgb colors used to create the linear gradient                                                                  |
-| gradientDirection    | [170,0,0,0]                                       | the direction of the linear gradient                                                                                      |
-| logo                 | null                                              | Image source object. Ex. {uri: 'base64string'} or {require('pathToImage')}                                                |
-| logoSize             | 20% of size                                       | Size of the imprinted logo. Bigger logo = less error correction in QR code                                                |
-| logoBackgroundColor  | backgroundColor                                   | The logo gets a filled quadratic background with this color. Use 'transparent' if your logo already has its own backdrop. |
-| logoMargin           | 2                                                 | logo's distance to its wrapper                                                                                            |
-| logoBorderRadius     | 0                                                 | the border-radius of logo image (Android is not supported)                                                                |
-| quietZone            | 0                                                 | quiet zone around the qr in pixels (useful when saving image to gallery)                                                  |
-| ecl                  | 'M'                                               | Error correction level                                                                                                    |
-| onError(error)       | undefined                                         | Callback fired when exception happened during the code generating process                                                 |
+| Name                 | Type                   | Default                                            | Description                                                              |
+| -------------------- | ---------------------- | -------------------------------------------------- | ------------------------------------------------------------------------ |
+| value                | `string`               | `'this is a QR code'`                              | Value to encode in the QR code                                           |
+| size                 | `number`               | `100`                                              | Size of rendered image in pixels                                         |
+| color                | `string`               | `'black'`                                          | Color of the QR code                                                     |
+| backgroundColor      | `string`               | `'white'`                                          | Background color                                                         |
+| logo                 | `string`               | `undefined`                                        | Raster image source (PNG/JPG via `require()` or URI)                     |
+| logoSVG              | `string \| number`     | `undefined`                                        | SVG logo as inline XML string, remote URL, or local asset via `require()`|
+| logoSize             | `number`               | `20% of size`                                      | Size of the logo. Bigger logo = less error correction                    |
+| logoBackgroundColor  | `string`               | `backgroundColor`                                  | Background color behind the logo                                         |
+| logoColor            | `string`               | `undefined`                                        | Fill color applied to SVG logos                                          |
+| logoMargin           | `number`               | `2`                                                | Margin around the logo                                                   |
+| logoBorderRadius     | `number`               | `0`                                                | Border radius of the logo area                                           |
+| quietZone            | `number`               | `0`                                                | Quiet zone (padding) around the QR code in pixels                        |
+| enableLinearGradient | `boolean`              | `false`                                            | Enable linear gradient on the QR code                                    |
+| linearGradient       | `string[]`             | `['rgba(0,73,255,1)', 'rgba(255,255,255,1)']`      | Array of 2 colors for the gradient                                       |
+| gradientDirection    | `string[]`             | `['0%', '0%', '100%', '100%']`                     | Gradient direction as `[x1, y1, x2, y2]`                                 |
+| ecl                  | `'L' \| 'M' \| 'Q' \| 'H'` | `'M'`                                        | Error correction level                                                   |
+| onError              | `(error: Error) => void` | `undefined`                                      | Callback when QR generation fails                                        |
+| testID               | `string`               | `undefined`                                        | Test ID for the SVG element                                              |
+
+## Peer Dependencies
+
+- `react` - any version
+- `react-native` - any version
+- `react-native-svg` - >= 15
 
 ## Contributing
 
@@ -61,7 +107,3 @@ See the [contributing guide](CONTRIBUTING.md) to learn how to contribute to the 
 ## License
 
 MIT
-
----
-
-Made with [create-react-native-library](https://github.com/callstack/react-native-builder-bob)
