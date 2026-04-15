@@ -4,7 +4,7 @@ export interface QRCodeProps {
   color?: string;
   backgroundColor?: string;
   logo?: string;
-  logoSVG?: string | object;
+  logoSVG?: string | number;
   logoSize?: number;
   logoBackgroundColor?: string;
   logoColor?: string;
@@ -23,7 +23,7 @@ export interface RenderLogoProps {
   size: number;
   backgroundColor: string;
   logo?: string;
-  logoSVG?: string | object;
+  logoSVG?: string | number;
   logoSize: number;
   logoBackgroundColor: string;
   logoColor?: string;

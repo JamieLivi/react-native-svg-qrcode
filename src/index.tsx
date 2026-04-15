@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
 import Svg, { ClipPath, Defs, G, Image, LinearGradient, Path, Rect, Stop } from 'react-native-svg';
 import LogoSVG from './LogoSVG';
 import { genMatrix } from './genMatrix';
@@ -65,7 +65,7 @@ const renderLogo = ({
   );
 };
 
-export const QRCode: React.FC<QRCodeProps> = ({
+export const QRCode = ({
   value = 'this is a QR code',
   size = 100,
   color = 'black',
@@ -84,7 +84,7 @@ export const QRCode: React.FC<QRCodeProps> = ({
   ecl = 'M',
   onError,
   testID,
-}) => {
+}: QRCodeProps) => {
   const result = useMemo(() => {
     try {
       return transformMatrixIntoPath(genMatrix(value, ecl), size);

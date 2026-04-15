@@ -41,7 +41,7 @@ const getTotalBitsFromDataArray = (segments: Segment[], version: number): number
 };
 
 const getBestVersionForMixedData = (
-  segments: any[],
+  segments: Segment[],
   errorCorrectionLevel: ErrorCorrectionLevel,
 ): number | undefined => {
   for (let currentVersion = 1; currentVersion <= 40; currentVersion++) {
@@ -134,7 +134,7 @@ export const getCapacity = (
  * @return {number}                      QR Code version
  */
 export const getBestVersionForData = (
-  data: any,
+  data: Segment | Segment[],
   errorCorrectionLevel: string | ErrorCorrectionLevel,
 ): number | undefined => {
   let seg;

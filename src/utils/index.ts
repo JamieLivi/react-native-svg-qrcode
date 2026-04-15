@@ -9,7 +9,7 @@ import * as MaskPattern from './mask-pattern';
 import * as Mode from './mode';
 import ReedSolomonEncoder from './reed-solomon-encoder';
 import * as Segments from './segments';
-import type { ErrorCorrectionLevel, QRCodeOptions, QRCodeSymbol } from './types';
+import type { ErrorCorrectionLevel, QRCodeOptions, QRCodeSymbol, Segment } from './types';
 import * as Utils from './utils';
 import * as Version from './version';
 
@@ -196,7 +196,7 @@ const setupData = (matrix: BitMatrix, data: Uint8Array): void => {
 const createData = (
   version: number,
   errorCorrectionLevel: ErrorCorrectionLevel,
-  segments: any[],
+  segments: Segment[],
 ): Uint8Array => {
   // Prepare data buffer
   const buffer = new BitBuffer();
