@@ -1,3 +1,4 @@
+import { cloneElement } from 'react';
 import { SvgUri, SvgXml } from 'react-native-svg';
 import type { LogoSVGProps } from './types';
 
@@ -18,8 +19,16 @@ const LogoSVG = ({ svg, logoSize, logoColor }: LogoSVGProps) => {
     return <SvgXml xml={svg} fill={logoColor} width={logoSize} height={logoSize} />;
   }
 
-  // Local assets via require() are not supported on web
-  return null;
+  if (typeof svg === 'number') {
+    // Local assets via require() are not supported on web
+    return null;
+  }
+
+  return cloneElement(svg, {
+    width: logoSize,
+    height: logoSize,
+    ...(logoColor ? { fill: logoColor } : {}),
+  });
 };
 
 export default LogoSVG;
