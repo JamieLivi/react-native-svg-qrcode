@@ -1,10 +1,12 @@
+import type { ReactElement } from 'react';
+
 export interface QRCodeProps {
   value?: string;
   size?: number;
   color?: string;
   backgroundColor?: string;
   logo?: string;
-  logoSVG?: string | number;
+  logoSVG?: string | number | ReactElement;
   logoSize?: number;
   logoBackgroundColor?: string;
   logoColor?: string;
@@ -23,7 +25,7 @@ export interface RenderLogoProps {
   size: number;
   backgroundColor: string;
   logo?: string;
-  logoSVG?: string | number;
+  logoSVG?: string | number | ReactElement;
   logoSize: number;
   logoBackgroundColor: string;
   logoColor?: string;
